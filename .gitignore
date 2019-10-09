@@ -1,0 +1,6 @@
+/target
+**/*.rs.bk
+
+.idea
+
+test.db
