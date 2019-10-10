@@ -22,17 +22,18 @@ struct CreatePost {
     body: String,
 }
 
-fn create(post: web::Json<CreatePost>, req: HttpRequest) -> impl Responder {
+fn create(post: web::Json<CreatePost>,
+          req: HttpRequest) -> impl Responder {
     println!("request: {:?}", req);
     println!("model: {:?}", post);
 
-    let result = create_post(post.0.title.as_ref(), post.0.body.as_ref());
+    let result = create_post(post.0.title.as_ref(),
+                             post.0.body.as_ref());
 
     HttpResponse::Ok().json(result)
 }
 
 fn publish(path: web::Path<String>) -> impl Responder {
-
     let result = publish_post(path.to_string());
 
     HttpResponse::Ok().json(result)

@@ -9,8 +9,6 @@ use models::*;
 use schema::posts;
 use schema::posts::dsl::*;
 
-use uuid::Uuid;
-
 fn establish_connection() -> SqliteConnection {
     dotenv().ok();
 
@@ -30,6 +28,8 @@ pub fn get_posts() -> Vec<Post> {
         .expect("Error loading posts")
 }
 
+use uuid::Uuid;
+
 pub fn create_post(t: &str, b: &str) -> String {
     let connection = establish_connection();
 
@@ -46,7 +46,6 @@ pub fn create_post(t: &str, b: &str) -> String {
 }
 
 pub fn publish_post(key: String) -> usize {
-
     let connection = establish_connection();
 
     diesel::update(posts.find(key))
